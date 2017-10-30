@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ljm.todolist.R;
 import com.ljm.todolist.obj.Todo;
+import com.ljm.todolist.ui.fragment.contents.listener.RecyclerViewClickListener;
 import com.ljm.todolist.ui.fragment.contents.viewholder.TodoListViewHolder;
 
 import java.util.ArrayList;
@@ -19,11 +20,11 @@ import java.util.List;
 
 public class TodoListAdapter extends RecyclerView.Adapter<TodoListViewHolder> {
 
-
+    private RecyclerViewClickListener mListener;
     private ArrayList<Todo> mItemList = null;
 
-    public TodoListAdapter() {
-
+    public TodoListAdapter(RecyclerViewClickListener listener) {
+        mListener = listener;
     }
 
     public void setItemList(ArrayList itemList) {
@@ -57,7 +58,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(context);
         View convertView = inflater.inflate(viewType, parent, false);
 
-        TodoListViewHolder viewHolder = new TodoListViewHolder(convertView);
+        TodoListViewHolder viewHolder = new TodoListViewHolder(convertView, mListener);
         return viewHolder;
     }
 

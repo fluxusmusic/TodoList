@@ -9,10 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ljm.todolist.R;
 import com.ljm.todolist.obj.Todo;
 import com.ljm.todolist.ui.fragment.contents.adapter.TodoListAdapter;
+import com.ljm.todolist.ui.fragment.contents.listener.RecyclerViewClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +66,15 @@ public class TodoFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         todoListView.setLayoutManager(manager);
 
+        RecyclerViewClickListener listener = new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, String message) {
 
-        TodoListAdapter todoListAdapter = new TodoListAdapter();
+                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+            }
+        };
+
+        TodoListAdapter todoListAdapter = new TodoListAdapter(listener);
         todoListView.setAdapter(todoListAdapter);
 
         todoListAdapter.setItemList(gen());
