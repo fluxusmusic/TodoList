@@ -1,6 +1,7 @@
 package com.ljm.todolist.ui.fragment.contents.viewholder;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,7 +13,7 @@ import com.ljm.todolist.ui.fragment.contents.listener.RecyclerViewClickListener;
  * Created by mc.kim on 2017-10-28.
  */
 
-public class TodoListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class TodoListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnKeyListener {
 
     private TextView title = null;
     private RecyclerViewClickListener mListener;
@@ -22,6 +23,8 @@ public class TodoListViewHolder extends RecyclerView.ViewHolder implements View.
         title = (TextView) itemView.findViewById(R.id.title);
         mListener = listener;
         itemView.setOnClickListener(this);
+        itemView.setOnKeyListener(this);
+        itemView.setTag("");
     }
 
     public void setData(Todo data) {
@@ -29,7 +32,16 @@ public class TodoListViewHolder extends RecyclerView.ViewHolder implements View.
     }
 
     @Override
-    public void onClick(View view){
+    public void onClick(View view) {
         mListener.onClick(view, title.getText().toString());
+    }
+
+
+    @Override
+    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+
+        // DPAD RIGHT
+        mListener.onClick(view,title.getText().toString());
+        return false;
     }
 }
