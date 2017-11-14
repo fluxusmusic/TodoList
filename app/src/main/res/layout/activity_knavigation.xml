@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ljm.todolist.ui.NavigationActivity">
+    tools:context="com.ljm.todolist.ui.KNavigationActivity">
 
 
     <fragment
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:name="com.ljm.todolist.ui.fragment.contents.TodoFragment"
+        android:name="com.ljm.todolist.ui.fragment.contents.KTodoFragment"
         />
 
     <android.support.design.widget.BottomNavigationView
@@ -24,5 +24,4 @@
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation" />
-
 </LinearLayout>
